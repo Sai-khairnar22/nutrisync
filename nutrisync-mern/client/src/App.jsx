@@ -122,6 +122,18 @@ export default function App() {
     }
   };
 
+  const handleLogout = () => {
+    if (btRef.current) clearInterval(btRef.current);
+    localStorage.clear();
+    setBioData(INITIAL_BIO);
+    setMealHistory([]);
+    setUserProfile(null);
+    setOnboarded(false);
+    setStarted(false);
+    setActiveTab("Dashboard");
+    setBtDevice(null);
+  };
+
   // ── Splash ──────────────────────────────────────────────
   if (!started) {
     return (
@@ -284,6 +296,16 @@ export default function App() {
                   <p className="mb-0 label-xs">BMI: {userProfile.bmi}</p>
                 </div>
               </div>
+
+              {/* Logout */}
+              <button
+                className="nav-btn justify-content-center mt-3"
+                style={{ color: "#ef4444", borderColor: "rgba(239,68,68,0.15)", background: "rgba(239,68,68,0.05)" }}
+                onClick={handleLogout}
+              >
+                <i className="bi bi-box-arrow-left"></i>
+                Logout
+              </button>
             </div>
           )}
         </div>
